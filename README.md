@@ -17,3 +17,4 @@ Where you will briefly see text before redirecting. (wrong)
 You should have just redirected without seeing any text. (correct)
 
 All the logic sits inside App.js file.
+https://github.com/kvaithin/react-routing-issue/blob/main/src/App.js
