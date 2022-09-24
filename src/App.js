@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from 'react';
 
-function App() {
+const App = () => {
+  const [data, setData] = useState();
+
+  // just a fake call to emulate waiting for data first
+  useEffect(() => {
+    fetch('https://api.npms.io/v2/search?q=react')
+        .then(response => response.json())
+        .then(d => setData(d));
+  }, [])
+
+  // i want this redirect to happen without seeing the text below. 
+  useEffect(() => {
+    const shouldRedirect = true;
+    if (shouldRedirect) { // some other logic that will determine if shouldRedirect
+      window.location.replace('https://hn.algolia.com/api/v1/search?query=redux') 
+    }
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      I should never reach here cos of the redirecting
+      But I still see this text briefly for a second or 2 before redirecting.
+
+      {/* other components inside here  */}
     </div>
   );
 }
 
-export default App;
+export default (App);
